@@ -27,13 +27,21 @@ Name the image as image.png.
 Step 7: Open jupyter notebook (type jupyter notebook in the terminal) and run the following codes:
 
 from imageai.Detection import ObjectDetection
+
 import os
+
 execution_path = os.getcwd()
+
 detector = ObjectDetection()
+
 detector.setModelTypeAsRetinaNet()
+
 detector.setModelPath( os.path.join(execution_path , "resnet50_coco_best_v2.0.1.h5"))
+
 detector.loadModel()
+
 custom_objects = detector.CustomObjects(person=True, car=False) # detecting person from the image.
+
 detections = detector.detectCustomObjectsFromImage(input_image=os.path.join(execution_path , "image.png"), output_image_path=os.path.join(execution_path , "image_new.png"), custom_objects=custom_objects, minimum_percentage_probability=65)#setting the threshold probability at 65
 
 for eachObject in detections:
